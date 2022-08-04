@@ -11,7 +11,7 @@ This is a simple CRM backend API service to perform CRUD customers operations.
 
 ## Setup local dev/test environment
 
-### launch server by executing this command in Terminal
+### Launch server by executing this command in Terminal
 
 ```
 go run .
@@ -19,7 +19,7 @@ go run .
 
 The dev server will listen on port `3000`
 
-### run test cases by executing this command in Terminal
+### Run test cases by executing this command in Terminal
 
 ```
 go test
@@ -27,25 +27,20 @@ go test
 
 All test cases should pass and print out `PASS`
 
-## depencency packages:
-
-- [gorilla mux v1.8.0](https://pkg.go.dev/github.com/gorilla/mux@v1.8.0)
-- [github.com/teris-io/shortid v1.0](https://github.com/teris-io/shortid)
-
 ## File structure
 
 ```text
-
 
 data.go            --> customer data model and mock data
 routeHandlers.go   --> a list of route handlers
 main.go            --> main server file, register all request endpoints
 main_test.go       --> test cases
+swagger.yml        --> OpenAPI 3.0 definition file
 static\
   index.html       --> home page with OpenAPI definition
 ```
 
-## request endpoints
+## Request endpoints
 
 http://localhost:3000
 
@@ -57,7 +52,7 @@ http://localhost:3000
 | PUT         | /customers/{id} | updateCustomer |
 | DELETE      | /customers/{id} | deleteCustomer |
 
-## customer struct model
+## Customer struct model
 
 | field     | type    | example                  |
 | --------- | ------- | ------------------------ |
@@ -69,3 +64,8 @@ http://localhost:3000
 | Contacted | boolean | false                    |
 
 a mock database is used with some mock data
+
+## Depencencies:
+
+- [gorilla mux v1.8.0](https://pkg.go.dev/github.com/gorilla/mux@v1.8.0)
+- [github.com/teris-io/shortid v1.0](https://github.com/teris-io/shortid)
