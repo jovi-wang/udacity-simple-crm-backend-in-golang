@@ -1,0 +1,149 @@
+openapi: 3.0.0
+info:
+  description: Udacity simple CRM backend API
+  version: 1.0.0
+  title: CRM backend API
+servers:
+  - url: http://localhost:3000
+paths:
+  /customers:
+    get:
+      tags:
+        - customers
+      summary: Get all customers
+      operationId: getCustomers
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+
+    post:
+      tags:
+        - customers
+      summary: Add a new customer
+      operationId: addCustomer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerRequestBody'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        400:
+          description: ID exists
+
+  /customers/{id}:
+    get:
+      tags:
+        - customer
+      summary: Get customer by ID
+      description: Returns a single customer
+      operationId: getCustomer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        404:
+          description: Customer not found
+
+    put:
+      tags:
+        - customer
+      summary: Update an existing customer
+      operationId: updateCustomer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerRequestBody'
+        required: true
+      responses:
+        202:
+          description: successful operation
+        404:
+          description: Customer not found
+
+    delete:
+      tags:
+        - customer
+      summary: Deletes a customer
+      operationId: deleteCustomer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: successful operation
+        404:
+          description: Customer not found
+
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        id:
+          type: string
+          example: iNov-6iQ9J
+        name:
+          type: string
+          example: Urbanus
+        role:
+          type: string
+          example: Administrative Officer
+        email:
+          type: string
+          example: uabriani0@vistaprint.com
+        phone:
+          type: string
+          example: '772-772-1211'
+        contacted:
+          type: boolean
+          example: true
+    CustomerRequestBody:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Urbanus
+        role:
+          type: string
+          example: Administrative Officer
+        email:
+          type: string
+          example: eric@mail.com
+        phone:
+          type: string
+          example: '31463388'
+        contacted:
+          type: boolean
+          example: true
